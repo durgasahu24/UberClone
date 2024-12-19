@@ -205,3 +205,123 @@ This endpoint is used to logout user blacklist the token provided in cookie or h
       }
   ```
 
+
+# captain
+
+## POST /captains/register
+
+Register a new captain.
+
+### Request
+
+- **URL**: `/captains/register`
+- **Method**: `POST`
+- **Headers**: 
+  - `Content-Type: application/json`
+- **Body**:
+  ```json
+  {
+    "fullname": {
+      "firstname": "John",
+      "lastname": "Doe"
+    },
+    "email": "john.doe@example.com",
+    "password": "password123",
+    "vehicle": {
+      "color": "red",
+      "plate": "ABC123",
+      "capacity": 4,
+      "vehicleType": "car"
+    }
+  }
+
+
+#### Response ####
+
+- **Success** (201):
+ ```json
+   {
+    "token": "jwt_token_here",
+    "captain": {
+      "_id": "captain_id_here",
+      "fullname": {
+        "firstname": "John",
+        "lastname": "Doe"
+      },
+      "email": "john.doe@example.com",
+      "vehicle": {
+        "color": "red",
+        "plate": "ABC123",
+        "capacity": 4,
+        "vehicleType": "car"
+      }
+    }
+  } 
+ ```
+
+
+ 
+- **Client Error** (400):
+  - When required fields are missing:
+    ```json
+        {
+      "errors": [
+        {
+          "msg": "All fields are required",
+          "param": "field_name",
+          "location": "body"
+        }
+      ]
+    }
+    ```
+     - When validation fails:
+    ```json
+        {
+      "errors": [
+        {
+          "msg": "Invalid Email",
+          "param": "email",
+          "location": "body"
+        },
+        {
+          "msg": "First name must be at least 3 characters long",
+          "param": "fullname.firstname",
+          "location": "body"
+        },
+        {
+          "msg": "Password must be at least 6 characters long",
+          "param": "password",
+          "location": "body"
+        },
+        {
+          "msg": "Color must be at least 3 characters long",
+          "param": "vehicle.color",
+          "location": "body"
+        },
+        {
+          "msg": "Plate must be at least 3 characters long",
+          "param": "vehicle.plate",
+          "location": "body"
+        },
+        {
+          "msg": "Capacity must be at least 1",
+          "param": "vehicle.capacity",
+          "location": "body"
+        },
+        {
+          "msg": "Invalid vehicle type",
+          "param": "vehicle.vehicleType",
+          "location": "body"
+        }
+      ]
+    }
+    ```
+
+    - When user already exists:
+    ```json
+    {
+      "message": "Captain already exist"
+    }
+    ```
+
+
