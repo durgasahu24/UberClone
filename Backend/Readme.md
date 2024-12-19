@@ -1,6 +1,6 @@
 # UberClone Backend API Documentation
 
-## Endpoints
+## Register
 
 ### POST /users/register
 
@@ -151,3 +151,57 @@ This endpoint is used to log in an existing user.
       "message": "Invalid email or password"
     }
     ```
+
+
+# profile 
+
+### GET /users/profile
+
+This endpoint is used to get the profile of the logged-in user.
+
+#### Request
+
+- **URL**: `/users/profile`
+- **Method**: `GET`
+- **Headers**: 
+  - `Authorization: Bearer <jwt_token>`
+
+#### Response
+
+- **Success** (200):
+  ```json
+  {
+    "user": {
+      "_id": "user_id",
+      "fullname": {
+        "firstname": "John",
+        "lastname": "Doe"
+      },
+      "email": "john.doe@example.com",
+      "socketId": null
+    }
+  }
+
+- **Unauthorized** (401):
+  - When credentials are invalid:
+    ```json
+    {
+      "message": "Unauthorized"
+    }
+  ```
+
+
+## LogOut 
+
+### GET /users/logout
+
+This endpoint is used to logout user blacklist the token provided in cookie or headers .
+
+- **Success** (200):
+- When the user is logout:
+  ```json
+      {
+        "message": "Logged out"
+      }
+  ```
+
