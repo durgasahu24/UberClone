@@ -90,3 +90,64 @@ Register a new user.
 - The `password` field must be at least 6 characters long.
 - The `email` field must be a valid email address.
 
+
+### POST /users/login
+
+This endpoint is used to log in an existing user.
+
+#### Request
+
+- **URL**: `/users/login`
+- **Method**: `POST`
+- **Headers**: 
+  - `Content-Type: application/json`
+- **Body**:
+  ```json
+  {
+    "email": "john.doe@example.com",
+    "password": "password123"
+  }
+
+#### Response 
+
+- **Success** (200):
+```json
+    {
+    "token": "jwt_token",
+    "user": {
+      "_id": "user_id",
+      "fullname": {
+        "firstname": "John",
+        "lastname": "Doe"
+      },
+      "email": "john.doe@example.com"
+    }
+  }
+```
+
+- **Client Error** (400):
+  - When required fields are missing:
+    ```json
+    {
+      "errors": [
+        {
+          "msg": "Invalid Email",
+          "param": "email",
+          "location": "body"
+        },
+        {
+          "msg": "Password must be at least 6 characters long",
+          "param": "password",
+          "location": "body"
+        }
+      ]
+    }
+    ```
+
+- **Unauthorized** (401):
+  - When credentials are invalid:
+    ```json
+    {
+      "message": "Invalid email or password"
+    }
+    ```
