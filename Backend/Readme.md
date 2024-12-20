@@ -236,7 +236,7 @@ Register a new captain.
   }
 
 
-#### Response ####
+#### Response 
 
 - **Success** (201):
  ```json
@@ -325,3 +325,140 @@ Register a new captain.
     ```
 
 
+# Login
+
+## POST /captain/login
+
+This endpoint is used to log in an existing captain.
+
+### Request
+
+- **URL**: `/captain/login`
+- **Method**: `POST`
+- **Headers**: 
+  - `Content-Type: application/json`
+- **Body**:
+  ```json
+  {
+    "email": "john.doe@example.com",
+    "password": "password123"
+  }
+
+
+#### Response 
+
+- **Success** (201):
+```json
+    {
+    "token": "jwt_token",
+    "captain": {
+      "_id": "captain_id",
+      "fullname": {
+        "firstname": "John",
+        "lastname": "Doe"
+      },
+      "email": "john.doe@example.com",
+      "vehicle": {
+        "color": "red",
+        "plate": "ABC123",
+        "capacity": 4,
+        "vehicleType": "car"
+      }
+    }
+  }
+```
+
+_ **client errors**(400):
+ - When required fields are missing:
+  ```json
+    {
+    "errors": [
+      {
+        "msg": "Invalid Email",
+        "param": "email",
+        "location": "body"
+      },
+      {
+        "msg": "Password must be at least 6 characters long",
+        "param": "password",
+        "location": "body"
+      }
+    ]
+  }
+```
+
+- **Unauthorized** (401):
+- When credentials are invalid:
+  ```json
+      {
+        "message": "Invalid email or password"
+      }
+  ```
+
+# Profile 
+## GET/captain/profile 
+
+- **URL**: `/captain/profile`
+- **Method**: `GET`
+- **Headers**: 
+  - `Authorization: Bearer <jwt_token>`
+
+
+### Response 
+
+_**Success**(200) : 
+```json
+    {
+    "captain": {
+      "_id": "captain_id",
+      "fullname": {
+        "firstname": "John",
+        "lastname": "Doe"
+      },
+      "email": "john.doe@example.com",
+      "vehicle": {
+        "color": "red",
+        "plate": "ABC123",
+        "capacity": 4,
+        "vehicleType": "car"
+      },
+      "socketId": null,
+      "status": "inactive",
+      "location": {
+        "ltd": null,
+        "lng": null
+      }
+    }
+  }
+  ```
+
+  _**Unauthorsed**(401) : 
+  When the token is missing or invalid : 
+  ```json
+    {
+    "message": "Unauthorized"
+    }
+  ```
+
+# LogOut 
+
+## GET /captain/logout
+
+This endpoint is used to logout user blacklist the token provided in cookie or headers .
+
+- **Success** (200):
+- When the captain is logout:
+  ```json
+      {
+        "message": "Logged out"
+      }
+  ```
+
+
+  _**Unauthorsed**(401) : 
+  When the token is missing or invalid : 
+  ```json
+    {
+    "message": "Unauthorized"
+    }
+    ```
