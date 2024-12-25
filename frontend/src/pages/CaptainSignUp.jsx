@@ -1,22 +1,23 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
-// import { CaptainDataContext } from '../context/CapatainContext'
+import { CaptainDataContext } from '../context/CaptainContext'
 import { useNavigate } from 'react-router-dom'
-// import axios from 'axios'
+import axios from 'axios'
 
 const CaptainSignup = () => {
 
   const navigate = useNavigate()
+  const { captain, setCaptain } = useContext(CaptainDataContext)
 
-  const [ email, setEmail ] = useState('')
-  const [ password, setPassword ] = useState('')
-  const [ firstName, setFirstName ] = useState('')
-  const [ lastName, setLastName ] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
 
-  const [ vehicleColor, setVehicleColor ] = useState('')
-  const [ vehiclePlate, setVehiclePlate ] = useState('')
-  const [ vehicleCapacity, setVehicleCapacity ] = useState('')
-  const [ vehicleType, setVehicleType ] = useState('')
+  const [vehicleColor, setVehicleColor] = useState('')
+  const [vehiclePlate, setVehiclePlate] = useState('')
+  const [vehicleCapacity, setVehicleCapacity] = useState('')
+  const [vehicleType, setVehicleType] = useState('')
 
 
 
@@ -37,6 +38,13 @@ const CaptainSignup = () => {
         vehicleType: vehicleType
       }
     }
+
+    console.log("captain data :", captainData);
+
+
+    const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/captain/register`, captainData)
+
+    console.log("response :",response);
 
 
     if (response.status === 201) {
