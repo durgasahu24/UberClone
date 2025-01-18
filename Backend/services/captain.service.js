@@ -8,7 +8,6 @@ module.exports.createCaptain = async ({
         throw new Error("All feilds are required : ");
     }
 
-
     const captain = await captainModel.create({
         fullname: {
             firstname,

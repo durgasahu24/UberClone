@@ -5,12 +5,16 @@ import axios from 'axios';
 
 function UserProtectedWrapper({ children }) {
 
-    const token = localStorage.getItem('token');
+    console.log("welcome to protected wroute user protected routed ")
+
+
+
+    const token = localStorage.getItem('jwt');
     const navigate = useNavigate();
     const { user, setUser } = useContext(UserDataContext)
     const [loading, setLoading] = useState(true);
 
-    console.log("token  in protected route ",token)
+    console.log("token  in protected route ", token)
 
     useEffect(() => {
         if (!token) {
@@ -23,7 +27,9 @@ function UserProtectedWrapper({ children }) {
                 }
             }).then((response) => {
                 if (response.status === 200) {
-                    setUser(response.data.user);
+                    console.log("response in wrpatere ", response);
+                    console.log("response in wrpatere ", response.data);
+                    setUser(response.data);
                     setLoading(false)
                 }
             }).catch((err) => {

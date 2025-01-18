@@ -9,6 +9,7 @@ function VehiclePanel(props) {
       <h3 className='text-2xl mb-5 font-semibold'>Choose a Vehicle</h3>
       <div onClick={() => {
         props.setConfirmRidePanel(true)
+        props.selectVehicle('car');
       }} className="flex items-center justify-between w-full p-3 border-2 active:border-black rounded-xl mt-3">
         <img className='w-20 mb-2' src="https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,h_368,w_552/v1712027307/assets/42/eb85c3-e2dc-4e95-a70d-22ee4f08015f/original/Screenshot-2024-04-01-at-9.08.07p.m..png" alt="" />
         <div className='w-1/2 ml-4'>
@@ -16,11 +17,12 @@ function VehiclePanel(props) {
           <h5 className='font-medium text-sm'>2 mins away</h5>
           <p className='font-normal text-xs text-gray-600'>Affordable , compact rides</p>
         </div>
-        <h2 className='text-2xl font-semibold'>₹193.20</h2>
+        <h2 className='text-2xl font-semibold'>₹{props.fare.car}</h2>
       </div>
       <div
         onClick={() => {
           props.setConfirmRidePanel(true)
+          props.selectVehicle('moto');
         }}
         className="flex items-center justify-between w-full p-3 border-2 active:border-black rounded-xl mt-3">
         <img className='w-20  mb-2' src="https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,h_368,w_552/v1649231091/assets/2c/7fa194-c954-49b2-9c6d-a3b8601370f5/original/Uber_Moto_Orange_312x208_pixels_Mobile.png" alt="" />
@@ -29,11 +31,12 @@ function VehiclePanel(props) {
           <h5 className='font-medium text-sm'>3 mins away</h5>
           <p className='font-normal text-xs text-gray-600'>Affordable motoride rides</p>
         </div>
-        <h2 className='text-2xl font-semibold'>₹66</h2>
+        <h2 className='text-2xl font-semibold'>₹{props.fare.moto}</h2>
       </div>
       <div
         onClick={() => {
           props.setConfirmRidePanel(true)
+          props.selectVehicle('auto');
         }}
 
         className="flex items-center justify-between w-full p-3 border-2 active:border-black rounded-xl mt-3">
@@ -43,7 +46,7 @@ function VehiclePanel(props) {
           <h5 className='font-medium text-sm'>3 mins away</h5>
           <p className='font-normal text-xs text-gray-600'>Affordable Auto rides</p>
         </div>
-        <h2 className='text-2xl font-semibold'>₹166</h2>
+        <h2 className='text-2xl font-semibold'>₹{props.fare.auto}</h2>
       </div>
     </div>
   )

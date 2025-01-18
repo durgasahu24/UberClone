@@ -4,6 +4,7 @@ const captainService = require('../services/captain.service.js');
 const { validationResult } = require('express-validator');
 
 module.exports.registerCaptain = async (req, res, next) => {
+    console.log("welcome in captain register :");
 
     const errors = validationResult(req);
 
@@ -34,6 +35,8 @@ module.exports.registerCaptain = async (req, res, next) => {
     });
 
     const token = captain.generateAuthToken();
+
+    console.log("captina :");
 
     res.status(201).json({ token, captain });
 
@@ -74,6 +77,7 @@ module.exports.loginCaptain = async (req, res, next) => {
 
 
 module.exports.getCaptainProfile = async (req, res, next) => {
+    console.log("welcome to getCaptain profile");
     res.status(200).json({ captain: req.captain });
 }
 

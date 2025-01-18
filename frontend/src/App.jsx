@@ -12,21 +12,24 @@ import UserLogout from './pages/UserLogout.jsx'
 import CaptainHome from './pages/CaptainHome.jsx'
 import CaptainProtectedWrapper from './pages/CaptainProtectedWrapper.jsx'
 import CaptainLogout from './pages/CaptainLogout.jsx'
+import Riding from './pages/Riding.jsx'
+import CaptainRiding from './pages/CaptainRiding.jsx'
 
 
 
 function App() {
-  const ans = useContext(UserDataContext)
-
+  // const ans = useContext(UserDataContext)
 
   return (
     <div>
       <Routes>
         <Route path='/' element={<Start />} />
-        <Route path='/login' element={<UserLogin />}/>
+        <Route path='/login' element={<UserLogin />} />
         <Route path='/signup' element={<UserSignUp />} />
+        <Route path='/riding' element={<Riding />} />
         <Route path='/captain-login' element={<CaptainLogin />} />
         <Route path='/captain-signup' element={<CaptainSignUp />} />
+        <Route path='/captain-riding' element={<CaptainRiding />} />
         <Route path='/home' element={
           <UserProtectedWrapper>
             <Home />

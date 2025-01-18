@@ -84,7 +84,7 @@ module.exports.logoutUser = async (req, res, next) => {
 
     const token = req.cookies.token || req.headers.authorization?.split(' ')[1];
 
-    console.log("token in logout",token);
+    console.log("token in logout", token);
 
     await blackListTokenModel.create({ token });
 

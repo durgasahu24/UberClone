@@ -9,10 +9,12 @@ function CaptainProtectedWrapper({ children }) {
     const navigate = useNavigate();
     const { captain, setCaptain } = useContext(CaptainDataContext);
 
+
     useEffect(() => {
         if (!token) {
             navigate('/captain-login');
         } else {
+            console.log('token in protect captain : ', token);
             axios.get(`${import.meta.env.VITE_BASE_URL}/captain/profile`, {
                 headers: {
                     Authorization: `Bearer ${token}`
