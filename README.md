@@ -27,10 +27,14 @@ git clone https://github.com/durgasahu24/UberClone.git
 cd UberClone
 ```
 ### Install dependencies
+```bash
 npm install
+```
 
 ### Run the app
+```bash
 npm start
+```
 
 
 
