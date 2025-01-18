@@ -1,39 +1,37 @@
 # UberClone
 
-This project is a clone of the Uber application built using **React** and **Leaflet** for map integration. It allows users to track their live location and shows it dynamically on a map.
+UberClone is a ride-booking application built using the **MERN stack** (MongoDB, Express, React, Node.js). It allows users to book rides through OTP authentication, calculates dynamic fares and estimated times based on location, and receives real-time updates using **Socket.IO**. The app uses **React Context API** for state management, providing a simple and scalable way to manage global state across components.
 
 ## Features
 
-- **Live Location Tracking**: The app tracks the user's current location in real-time.
-- **Interactive Map**: Displays a map with the user's location using **Leaflet**.
-- **Responsive Design**: The app is fully responsive and works across all screen sizes.
-- **Real-time Updates**: The map center and marker update every time the user's location changes.
+- **OTP-based Ride Booking**: Users can book a ride by verifying their identity through OTP (One-Time Password) sent to their mobile.
+- **Fare and Time Calculation**: The app calculates dynamic fare and estimated time of arrival (ETA) using APIs based on the user's current location (latitude and longitude).
+- **Real-Time Updates**: Ride status and progress are updated in real-time using **Socket.IO**.
+- **Location Data**: Latitude and longitude are used for calculating fares, ETA, and providing location-specific information.
+- **User Authentication**: Users must authenticate using OTP before booking a ride.
+- **Context API for State Management**: The app uses React's **Context API** for global state management, making it easier to manage and update app-wide state like user data, ride details, etc.
+- **MongoDB Integration**: User data, ride details, and other important information are stored in **MongoDB**.
 
 ## Tech Stack
 
-- **Frontend**: React.js
-- **Map Integration**: Leaflet.js
-- **Map Tile Layer**: OpenStreetMap
-- **Location Tracking**: HTML5 Geolocation API
+- **Frontend**: React.js with Context API for state management
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB
+- **Real-Time Communication**: Socket.IO
+- **OTP Verification**: Integrated OTP system for user authentication
+- **APIs for Fare and Time Calculation**: Third-party APIs for calculating fare and ETA based on the user's location
+- **Map Integration**: Static map images for location representation
+- **State Management**: React Context API for global state management
 
 ## Getting Started
 
-To get started with this project locally, follow the steps below:
+Follow the instructions below to set up both the frontend and backend locally:
 
-### 1. Clone the repositorynpm start
-
+### 1. Clone the repository
+Clone the project from GitHub:
 ```bash
 git clone https://github.com/durgasahu24/UberClone.git
 cd UberClone
-```
-### Install dependencies
-```bash
-npm install
-```
-
-### Run the app
-```bash
-npm start
 ```
 
 
