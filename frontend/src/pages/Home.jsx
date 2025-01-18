@@ -11,6 +11,7 @@ import { SocketContext } from '../context/SocketContext.jsx'
 import { UserDataContext } from '../context/UserContext.jsx';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { LiveTracking } from '../components/LiveTracking.jsx'
 
 function Home() {
   //video start from 4:26
@@ -235,8 +236,10 @@ function Home() {
     <div className='h-screen relative overflow-hidden'>
       <img className='w-16 absolute left-5 top-5' src="https://download.logo.wine/logo/Uber/Uber-Logo.wine.png" alt="" />
       <div className='h-screen w-screen'>
-        <img className='h-full w-full object-cover' src="https://miro.medium.com/v2/resize:fit:1400/0*gwMx05pqII5hbfmX.gif" alt="" />
+        {/* <img className='h-full w-full object-cover' src="https://miro.medium.com/v2/resize:fit:1400/0*gwMx05pqII5hbfmX.gif" alt="" /> */}
+        <LiveTracking />
       </div>
+
       <div className="absolute h-screen w-full top-0 flex flex-col justify-end">
         <div className='h-[30%] bg-white p-5 relative'>
           <h5
@@ -252,9 +255,7 @@ function Home() {
               onClick={(e) => {
                 setPanelOpen(true)
                 setActiveField('pickup')
-              }
-              }
-              // onChange={(e) => setPickup(e.target.value)}
+              }}
               className="bg-[#eee] rounded-lg w-full mt-5 px-12 py-2"
               type="text"
               placeholder='Add a pick-up location'
@@ -266,13 +267,7 @@ function Home() {
               }}
               value={destination}
               onChange={handleDestinationChange}
-              // value={destination}
-              // onClick={() => setPanelOpen(true)}
-              // onChange={(e) => {
-              // setDestination(e.target.value)
-              // setActiveField('destination');
-              // setPanelOpen(true)
-              // }}
+
               className="bg-[#eee] rounded-lg w-full mt-5 px-12 py-2"
               type="text"
               placeholder='Enter your destination'
@@ -280,14 +275,12 @@ function Home() {
           </form>
           <button
             onClick={findTrip}
-            className='bg-black text-white px-4 py-2 rounded-lg mt-3 w-full'>
+            className='bg-black text-white px-4 py-2 rounded-lg mt-11 w-full '>
             Find Trip
           </button>
         </div>
         <div ref={panelRef} className='bg-white h-0'>
-          {/* <LocationSearchPanel
-            setPanelOpen={setPanelOpen}
-            setVehiclePanelOpen={setVehiclePanelOpen} /> */}
+
           <LocationSearchPanel
             suggestions={activeField === 'pickup' ? pickupSuggestions : destinationSuggestions}
             setPanelOpen={setPanelOpen}
