@@ -50,16 +50,7 @@ function initializeSocket(server) {
     });
 }
 
-// const sendMessageToSocketId = (socketId, messageObject) => {
-//     console.log("sendMessage to socket id here : ",messageObject)
-//     console.log("event type :",messageObject.event);
 
-//     if (io) {
-//         io.to(socketId).emit(messageObject.event, messageObject.data);
-//     } else {
-//         console.log('Socket.io not initialized.');
-//     }
-// }
 
 const sendMessageToSocketId = (socketId, messageObject) => {
     console.log('Preparing to send message:', { event: messageObject?.event, socketId });
@@ -91,32 +82,6 @@ const sendMessageToSocketId = (socketId, messageObject) => {
     }
 };
 
-
-// const sendMessageToSocketId = (socketId, messageObject) => {
-//     console.log("sendMessage to socket id here:", messageObject);
-//     console.log("event type:", messageObject?.event);
-
-//     if (!io) {
-//         console.log('Socket.io not initialized.');
-//         return;
-//     }
-
-//     if (!messageObject || !messageObject.event || !messageObject.data) {
-//         console.log('Invalid messageObject:', messageObject);
-//         return;
-//     }
-
-//     try {
-//         if (io.sockets.sockets.has(socketId)) {
-//             io.to(socketId).emit(messageObject.event, messageObject.data);
-//             console.log(`Message sent to socket ID ${socketId}`);
-//         } else {
-//             console.log(`Socket ID ${socketId} is not connected.`);
-//         }
-//     } catch (error) {
-//         console.error(`Failed to send message to socket ID ${socketId}:`, error);
-//     }
-// };
 
 
 module.exports = { initializeSocket, sendMessageToSocketId };

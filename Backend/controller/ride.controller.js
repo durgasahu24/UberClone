@@ -40,6 +40,8 @@ module.exports.createRide = async (req, res) => {
             2
         );
 
+        // Find all available captains (drivers) within a 2 km radius of the pickup location.
+
         console.log("Captains in radius:", captainsInRadius);
 
         if (!captainsInRadius.length) {
@@ -90,7 +92,7 @@ module.exports.getFare = async (req, res) => {
 
 
 module.exports.confirmRide = async (req, res) => {
-    
+
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
@@ -98,12 +100,12 @@ module.exports.confirmRide = async (req, res) => {
 
     const { rideId } = req.body;
 
-    console.log("ride id in confirm ride controller : ",rideId);
+    console.log("ride id in confirm ride controller : ", rideId);
 
     try {
         const ride = await rideService.confirmRide({ rideId, captain: req.captain });
 
-        console.log("ride in controller : ",ride);
+        console.log("ride in controller : ", ride);
 
         sendMessageToSocketId(ride.user.socketId, {
             event: 'ride-confirmed',
@@ -131,12 +133,12 @@ module.exports.startRide = async (req, res) => {
 
     const { rideId, otp } = req.query;
 
-    console.log("rideid : otp : ",rideId,otp);
+    console.log("rideid : otp : ", rideId, otp);
 
     try {
         const ride = await rideService.startRide({ rideId, otp, captain: req.captain });
 
-        console.log("ride ",ride);
+        console.log("ride ", ride);
 
         sendMessageToSocketId(ride.user.socketId, {
             event: 'ride-started',
@@ -170,7 +172,7 @@ module.exports.endRide = async (req, res) => {
         return res.status(200).json(ride);
     } catch (err) {
         return res.status(500).json({ message: err.message });
-    } 
+    }
 }
 
 

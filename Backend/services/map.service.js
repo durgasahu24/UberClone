@@ -116,5 +116,6 @@ module.exports.getCaptinsInTheRadious = async (ltd, lng, radius) => {
     });
 
     return captains;
+    // Because 6371 is the Earth's radius in kilometers.
 
 }

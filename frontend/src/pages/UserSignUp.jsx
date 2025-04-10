@@ -53,9 +53,7 @@ const UserSignup = () => {
         <div>
           <img className='w-16 mb-10' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYQy-OIkA6In0fTvVwZADPmFFibjmszu2A0g&s" alt="" />
 
-          <form onSubmit={(e) => {
-            submitHandler(e)
-          }}>
+          <form onSubmit={(e) => {submitHandler(e) }} className='max-w-md w-full mx-auto'>
 
             <h3 className='text-lg w-1/2  font-medium mb-2'>What's your name</h3>
             <div className='flex gap-4 mb-7'>

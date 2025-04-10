@@ -44,8 +44,6 @@ function App() {
           <CaptainLogout />
         </CaptainProtectedWrapper>} />
 
-
-
       </Routes>
 
     </div>
