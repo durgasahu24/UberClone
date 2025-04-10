@@ -5,9 +5,9 @@ UberClone is a ride-booking application built using the **MERN stack** (MongoDB,
 ## Features
 
 - **OTP-based Ride Booking**: Users can book a ride by verifying their identity through OTP (One-Time Password) sent to their mobile.
-- **Fare and Time Calculation**: The app calculates dynamic fare and estimated time of arrival (ETA) using APIs based on the user's current location (latitude and longitude).
+- **Fare**: The app calculates dynamic fare.
 - **Real-Time Updates**: Ride status and progress are updated in real-time using **Socket.IO**.
-- **Location Data**: Latitude and longitude are used for calculating fares, ETA, and providing location-specific information.
+- **Location Data**: Latitude and longitude are used for calculating fares, and providing location-specific information.
 - **User Authentication**: Users must authenticate using OTP before booking a ride.
 - **Context API for State Management**: The app uses React's **Context API** for global state management, making it easier to manage and update app-wide state like user data, ride details, etc.
 - **MongoDB Integration**: User data, ride details, and other important information are stored in **MongoDB**.
@@ -19,7 +19,7 @@ UberClone is a ride-booking application built using the **MERN stack** (MongoDB,
 - **Database**: MongoDB
 - **Real-Time Communication**: Socket.IO
 - **OTP Verification**: Integrated OTP system for user authentication
-- **APIs for Fare and Time Calculation**: Third-party APIs for calculating fare and ETA based on the user's location
+- **APIs for Fare**: Third-party APIs for calculating fare
 - **Map Integration**: Static map images for location representation
 - **State Management**: React Context API for global state management
 
