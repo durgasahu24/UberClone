@@ -8,7 +8,7 @@ import { useGSAP } from '@gsap/react'
 import { SocketContext } from "../context/SocketContext.jsx"
 import { CaptainDataContext } from '../context/CaptainContext.jsx'
 import axios from 'axios'
-import {LiveTracking } from '../components/LiveTracking.jsx'
+import { LiveTracking } from '../components/LiveTracking.jsx'
 
 function CaptainHome() {
 
@@ -55,6 +55,7 @@ function CaptainHome() {
 
 
   console.log('Token before:', localStorage.getItem('token'));
+
   socket.on('new-ride', (data) => {
     if (!data || typeof data !== 'object') {
       console.error('Invalid ride data received:', data);
@@ -64,6 +65,7 @@ function CaptainHome() {
     setRidePopupPanel(true);
     console.log('New ride data received:', data);
   });
+  
   console.log('Token after:', localStorage.getItem('token'));
 
 
@@ -125,7 +127,7 @@ function CaptainHome() {
 
       <div className=' w-full'>
         {/* <img className='h-full w-full object-cover' src="https://miro.medium.com/v2/resize:fit:1400/0*gwMx05pqII5hbfmX.gif" alt="" /> */}
-        <LiveTracking  height='60vh'/>
+        <LiveTracking height='60vh' />
 
       </div>
       <div className='h-2/5 p-4'>

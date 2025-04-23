@@ -40,17 +40,19 @@ function Home() {
   const navigate = useNavigate();
 
 
-
   const { socket } = useContext(SocketContext)
   const { user } = useContext(UserDataContext);
 
   console.log("user : ", user);
+
+
   useEffect(() => {
 
     console.log("User token:", localStorage.getItem('jwt'));
     if (user?._id) {
       socket.emit("join", { userType: "user", userId: user._id });
     }
+    //for updating socket id of user 
 
 
   }, [user])
@@ -65,18 +67,17 @@ function Home() {
   })
 
   socket.on('ride-started', ride => {
-
     console.log("ride stated run :");
-
     setWatingForDriver(false);
     navigate('/riding', { state: { ride } });
-
   })
+
 
 
   const handlePickupChange = async (e) => {
     console.log("e target value", e.target.value);
     setPickup(e.target.value)
+
     try {
       const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/maps/get-suggestions`, {
         params: { input: e.target.value },
@@ -93,6 +94,7 @@ function Home() {
 
     }
   }
+
 
   const handleDestinationChange = async (e) => {
     setDestination(e.target.value)

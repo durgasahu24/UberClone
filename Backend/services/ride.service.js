@@ -79,15 +79,15 @@ module.exports.createRide = async ({ user, pickup, destination, vehicleType }) =
 }
 
 
-module.exports.confirmRide = async ({rideId, captain}) => {
+module.exports.confirmRide = async ({ rideId, captain }) => {
 
-    console.log("ride id captain ",rideId,captain);
-    
+    console.log("ride id captain ", rideId, captain);
+
     if (!rideId) {
         throw new Error('Ride id is required');
     }
 
-    await rideModel.findOneAndUpdate({_id: rideId}, {
+    await rideModel.findOneAndUpdate({ _id: rideId }, {
         status: 'accepted',
         captain: captain._id
     })
