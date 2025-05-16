@@ -8,6 +8,7 @@ import CaptainContext from './context/CaptainContext.jsx'
 import SocketProvider from './context/SocketContext.jsx';
 
 
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <CaptainContext>
@@ -15,6 +16,7 @@ createRoot(document.getElementById('root')).render(
         <SocketProvider>
           <BrowserRouter>
             <App />
+        
           </BrowserRouter>
         </SocketProvider>
       </UserContext>

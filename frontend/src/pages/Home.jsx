@@ -12,6 +12,7 @@ import { UserDataContext } from '../context/UserContext.jsx';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { LiveTracking } from '../components/LiveTracking.jsx'
+import {toast} from 'react-hot-toast'
 
 function Home() {
   //video start from 4:26
@@ -229,7 +230,13 @@ function Home() {
       }
     })
 
+    console.log("response : ",response);
     console.log("response data ", response.data);
+    console.log("response status ", response.status);
+    if(response.status === 404)
+    {
+    toast.error(response.data.message)
+    }
   }
 
 
@@ -238,7 +245,6 @@ function Home() {
     <div className='h-screen relative overflow-hidden'>
       <img className='w-16 absolute left-5 top-5' src="https://download.logo.wine/logo/Uber/Uber-Logo.wine.png" alt="" />
       <div className='h-screen w-screen'>
-        {/* <img className='h-full w-full object-cover' src="https://miro.medium.com/v2/resize:fit:1400/0*gwMx05pqII5hbfmX.gif" alt="" /> */}
         <LiveTracking />
       </div>
 

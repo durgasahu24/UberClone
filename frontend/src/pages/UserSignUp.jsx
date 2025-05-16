@@ -1,121 +1,324 @@
-import React, { useState} from 'react'
+// import React, { useState } from 'react'
+// import { Link, useNavigate } from 'react-router-dom'
+// import axios from 'axios'
+// import UserContext from '../context/UserContext.jsx'
+// import { useContext } from 'react'
+// import { UserDataContext } from '../context/UserContext.jsx'
+
+
+// const UserSignup = () => {
+//   // const [email, setEmail] = useState('')
+//   // const [password, setPassword] = useState('')
+//   // const [firstName, setFirstName] = useState('')
+//   // const [lastName, setLastName] = useState('')
+//   const [userData, setUserData] = useState({
+//     fullname:{
+//       firstname:"",
+//       lastname:""
+//     },
+//     email:"",
+//     password:""
+//   })
+
+//   const [error,setError] = useState("");
+
+//   const validate = () => {
+//     errObj = {};
+//     if(!fullname.firstname) errObj.fullname.firstname = "firstName is required : ";
+//     if(!fullname.lastname) errObj.fullname.lastname = "lastName is required : ";
+//     if(!email) errObj.email = "email is required : ";
+//     if(!password) errObj.password = "password is required : "
+
+//     return errObj;
+     
+//   }
+
+//   const navigate = useNavigate()
+
+//   const { user, setUser } = useContext(UserDataContext);
+
+//   const handleChange  = (e) => {
+
+//     setUser({...})
+    
+//   }
+
+//   const submitHandler = async (e) => {
+//     e.preventDefault()
+
+//     const validation = validate();
+//     setError(validation);
+//     if(Object.keys(validation).length === 0)
+//     {
+//     // const newUser = {
+//     //   fullname: {
+//     //     firstname: firstName,
+//     //     lastname: lastName
+//     //   },
+//     //   email: email,
+//     //   password: password
+//     // }
+
+//     console.log("userdata : ",userData);
+
+//     const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/register`, userData)
+
+//     console.log('response :', response);
+
+//     if (response.status === 201) {
+//       const data = response.data;
+//       setUser(data.user);
+//       localStorage.setItem("jwt", data.token);
+
+//       setUserData({
+//         fullname:{
+//           firstname:"",
+//           lastname:""
+//         },
+//         email:"",
+//         password:""
+//       })
+
+//       navigate('/home')
+//     }
+
+
+//   }
+
+// }
+//   return (
+//     <div>
+//       <div className='p-7 h-screen flex flex-col justify-between'>
+//         <div>
+//           <img className='w-16 mb-10' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYQy-OIkA6In0fTvVwZADPmFFibjmszu2A0g&s" alt="" />
+
+//           <form onSubmit={(e) => { submitHandler(e) }} className='max-w-md w-full mx-auto'>
+
+//             <h3 className='text-lg w-1/2  font-medium mb-2'>What's your name</h3>
+//             <div className='flex gap-4 mb-7'>
+//               <input
+//                 required
+//                 className='bg-[#eeeeee] w-1/2 rounded-lg px-4 py-2 border  text-lg placeholder:text-base'
+//                 type="text"
+//                 placeholder='First name'
+//                 value={}
+//                 onChange={(e) => {
+//                   setFirstName(e.target.value)
+//                 }}
+//               />
+//               <input
+//                 required
+//                 className='bg-[#eeeeee] w-1/2  rounded-lg px-4 py-2 border  text-lg placeholder:text-base'
+//                 type="text"
+//                 placeholder='Last name'
+//                 value={lastName}
+//                 onChange={(e) => {
+//                   setLastName(e.target.value)
+//                 }}
+//               />
+//             </div>
+
+//             <h3 className='text-lg font-medium mb-2'>What's your email</h3>
+//             <input
+//               required
+//               value={email}
+//               onChange={(e) => {
+//                 setEmail(e.target.value)
+//               }}
+//               className='bg-[#eeeeee] mb-7 rounded-lg px-4 py-2 border w-full text-lg placeholder:text-base'
+//               type="email"
+//               placeholder='email@example.com'
+//             />
+
+//             <h3 className='text-lg font-medium mb-2'>Enter Password</h3>
+
+//             <input
+//               className='bg-[#eeeeee] mb-7 rounded-lg px-4 py-2 border w-full text-lg placeholder:text-base'
+//               value={password}
+//               onChange={(e) => {
+//                 setPassword(e.target.value)
+//               }}
+//               required type="password"
+//               placeholder='password'
+//             />
+
+//             <button
+//               className='bg-[#111] text-white font-semibold mb-3 rounded-lg px-4 py-2 w-full text-lg placeholder:text-base'
+//             >Create account</button>
+
+//           </form>
+//           <p className='text-center'>Already have a account? <Link to='/login' className='text-blue-600'>Login here</Link></p>
+//         </div>
+//         <div>
+//           <p className='text-[10px] leading-tight'>This site is protected by reCAPTCHA and the <span className='underline'>Google Privacy
+//             Policy</span> and <span className='underline'>Terms of Service apply</span>.</p>
+//         </div>
+//       </div>
+//     </div >
+//   )
+// }
+
+// export default UserSignup
+
+
+
+
+import React, { useState, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import UserContext from '../context/UserContext.jsx'
-import { useContext } from 'react'
 import { UserDataContext } from '../context/UserContext.jsx'
-
+import {toast} from 'react-hot-toast'
 
 const UserSignup = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
-  const [userData, setUserData] = useState({})
+  const [userData, setUserData] = useState({
+    fullname: {
+      firstname: "",
+      lastname: ""
+    },
+    email: "",
+    password: ""
+  })
 
+  const [error, setError] = useState({})
   const navigate = useNavigate()
+  const { setUser } = useContext(UserDataContext)
 
-  const { user, setUser } = useContext(UserDataContext);
+  const handleChange = (e) => {
+    const { name, value } = e.target
+
+    if (name === "firstname" || name === "lastname") {
+      setUserData(prev => ({
+        ...prev,
+        fullname: {
+          ...prev.fullname,
+          [name]: value
+        }
+      }))
+    } else {
+      setUserData(prev => ({
+        ...prev,
+        [name]: value
+      }))
+    }
+  }
+
+  const validate = () => {
+    const errObj = {}
+    if (!userData.fullname.firstname) errObj.firstname = "First name is required."
+    if (!userData.fullname.lastname) errObj.lastname = "Last name is required."
+    if (!userData.email) errObj.email = "Email is required."
+    // if (!userData.password) errObj.password = "Password is required and its length must be atleast 6."
+    if(!userData.password || userData.password.length < 6)
+    {
+      errObj.password = "Password is required and must be at least 6 characters long"
+    }
+    return errObj
+  }
 
   const submitHandler = async (e) => {
     e.preventDefault()
-    const newUser = {
-      fullname: {
-        firstname: firstName,
-        lastname: lastName
-      },
-      email: email,
-      password: password
+    const validation = validate()
+    setError(validation)
+
+    if (Object.keys(validation).length === 0) {
+      try {
+        const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/register`, userData)
+
+        if (response.status === 201) {
+          const data = response.data
+          setUser(data.user)
+          toast.success("user registerd successfullly :");
+          localStorage.setItem("jwt", data.token)
+
+          // Clear form
+          setUserData({
+            fullname: {
+              firstname: "",
+              lastname: ""
+            },
+            email: "",
+            password: ""
+          })
+
+          navigate('/home')
+        }
+      } catch (err) {
+        console.error("Registration failed:", err)
+        toast.error("User registration failed : ");
+        setError({ api: "Failed to register. Please try again." })
+      }
     }
-
-    const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/register`, newUser)
-
-    console.log('response :',response);
-
-    if (response.status === 201) {
-      const data = response.data;
-      setUser(data.user);
-      localStorage.setItem("jwt",data.token);
-      navigate('/home')
-    }
-
-
-
-    setEmail('')
-    setFirstName('')
-    setLastName('')
-    setPassword('')
-
   }
+
   return (
-    <div>
-      <div className='p-7 h-screen flex flex-col justify-between'>
-        <div>
-          <img className='w-16 mb-10' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYQy-OIkA6In0fTvVwZADPmFFibjmszu2A0g&s" alt="" />
+    <div className='p-7 h-screen flex flex-col justify-between'>
+      <div>
+        <img className='w-16 mb-10' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYQy-OIkA6In0fTvVwZADPmFFibjmszu2A0g&s" alt="Logo" />
 
-          <form onSubmit={(e) => {submitHandler(e) }} className='max-w-md w-full mx-auto'>
+        <form onSubmit={submitHandler} className='max-w-md w-full mx-auto'>
 
-            <h3 className='text-lg w-1/2  font-medium mb-2'>What's your name</h3>
-            <div className='flex gap-4 mb-7'>
-              <input
-                required
-                className='bg-[#eeeeee] w-1/2 rounded-lg px-4 py-2 border  text-lg placeholder:text-base'
-                type="text"
-                placeholder='First name'
-                value={firstName}
-                onChange={(e) => {
-                  setFirstName(e.target.value)
-                }}
-              />
-              <input
-                required
-                className='bg-[#eeeeee] w-1/2  rounded-lg px-4 py-2 border  text-lg placeholder:text-base'
-                type="text"
-                placeholder='Last name'
-                value={lastName}
-                onChange={(e) => {
-                  setLastName(e.target.value)
-                }}
-              />
-            </div>
-
-            <h3 className='text-lg font-medium mb-2'>What's your email</h3>
+          <h3 className='text-lg w-1/2 font-medium mb-2'>What's your name</h3>
+          <div className='flex gap-4 mb-2'>
             <input
-              required
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value)
-              }}
-              className='bg-[#eeeeee] mb-7 rounded-lg px-4 py-2 border w-full text-lg placeholder:text-base'
-              type="email"
-              placeholder='email@example.com'
+              name="firstname"
+              value={userData.fullname.firstname}
+              onChange={handleChange}
+              className='bg-[#eeeeee] w-1/2 rounded-lg px-4 py-2 border text-lg placeholder:text-base'
+              type="text"
+              placeholder='First name'
             />
-
-            <h3 className='text-lg font-medium mb-2'>Enter Password</h3>
-
             <input
-              className='bg-[#eeeeee] mb-7 rounded-lg px-4 py-2 border w-full text-lg placeholder:text-base'
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value)
-              }}
-              required type="password"
-              placeholder='password'
+              name="lastname"
+              value={userData.fullname.lastname}
+              onChange={handleChange}
+              className='bg-[#eeeeee] w-1/2 rounded-lg px-4 py-2 border text-lg placeholder:text-base'
+              type="text"
+              placeholder='Last name'
             />
+          </div>
+          <p className='text-red-500 text-sm mb-4'>{error.firstname || error.lastname}</p>
 
-            <button
-              className='bg-[#111] text-white font-semibold mb-3 rounded-lg px-4 py-2 w-full text-lg placeholder:text-base'
-            >Create account</button>
+          <h3 className='text-lg font-medium mb-2'>What's your email</h3>
+          <input
+            name="email"
+            value={userData.email}
+            onChange={handleChange}
+            className='bg-[#eeeeee] mb-1 rounded-lg px-4 py-2 border w-full text-lg placeholder:text-base'
+            type="email"
+            placeholder='email@example.com'
+          />
+          <p className='text-red-500 text-sm mb-4'>{error.email}</p>
 
-          </form>
-          <p className='text-center'>Already have a account? <Link to='/login' className='text-blue-600'>Login here</Link></p>
-        </div>
-        <div>
-          <p className='text-[10px] leading-tight'>This site is protected by reCAPTCHA and the <span className='underline'>Google Privacy
-            Policy</span> and <span className='underline'>Terms of Service apply</span>.</p>
-        </div>
+          <h3 className='text-lg font-medium mb-2'>Enter Password</h3>
+          <input
+            name="password"
+            value={userData.password}
+            onChange={handleChange}
+            className='bg-[#eeeeee] mb-1 rounded-lg px-4 py-2 border w-full text-lg placeholder:text-base'
+            type="password"
+            placeholder='Password'
+          />
+          <p className='text-red-500 text-sm mb-4'>{error.password}</p>
+
+          <button
+            type="submit"
+            className='bg-[#111] text-white font-semibold mb-3 rounded-lg px-4 py-2 w-full text-lg'
+          >
+            Create account
+          </button>
+
+          {error.api && <p className='text-red-500 text-center text-sm'>{error.api}</p>}
+        </form>
+
+        <p className='text-center'>Already have an account? <Link to='/login' className='text-blue-600'>Login here</Link></p>
       </div>
-    </div >
+
+      <div>
+        <p className='text-[10px] leading-tight'>
+          This site is protected by reCAPTCHA and the <span className='underline'>Google Privacy Policy</span> and <span className='underline'>Terms of Service</span> apply.
+        </p>
+      </div>
+    </div>
   )
 }
 

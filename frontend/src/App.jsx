@@ -14,6 +14,7 @@ import CaptainProtectedWrapper from './pages/CaptainProtectedWrapper.jsx'
 import CaptainLogout from './pages/CaptainLogout.jsx'
 import Riding from './pages/Riding.jsx'
 import CaptainRiding from './pages/CaptainRiding.jsx'
+import {Toaster} from 'react-hot-toast'
 
 
 
@@ -22,6 +23,7 @@ function App() {
 
   return (
     <div>
+      <Toaster position='top-right'/>
       <Routes>
         <Route path='/' element={<Start />} />
         <Route path='/login' element={<UserLogin />} />

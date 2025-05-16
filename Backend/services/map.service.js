@@ -5,6 +5,7 @@ const captainModel = require('../models/captain.model.js');
 
 // Function to get the coordinates (latitude and longitude) from an address using OpenStreetMap's Nominatim API
 module.exports.getAddressCoordinate = async (address) => {
+    
     const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(address)}&format=json&addressdetails=1&limit=1`;
 
     try {
@@ -67,7 +68,7 @@ module.exports.getDistanceTime = async (originAddress, destinationAddress) => {
             throw new Error('Unable to fetch distance and time');
         }
     } catch (error) {
-        console.error('Error:', error);
+        console.error('Error in distance time:', error);
         throw error;
     }
 };

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { CaptainDataContext } from '../context/CaptainContext'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import toast from 'react-hot-toast'
 
 const CaptainSignup = () => {
 
@@ -44,14 +45,18 @@ const CaptainSignup = () => {
 
     const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/captain/register`, captainData)
 
-    console.log("response :",response);
+    console.log("response :", response);
 
 
     if (response.status === 201) {
       const data = response.data
       setCaptain(data.captain)
+      toast.success("captain registered successfully : ");
       localStorage.setItem('token', data.token)
       navigate('/captain-home')
+    }
+    else {
+      toast.error("captain registration failed ")
     }
 
     setEmail('')
