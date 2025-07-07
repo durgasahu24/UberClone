@@ -13,7 +13,7 @@ function initializeSocket(server) {
         }
     });
 
-    
+
     io.on('connection', (socket) => {
         console.log(`Client connected: ${socket.id}`);
 
@@ -29,7 +29,7 @@ function initializeSocket(server) {
             }
         });
 
-        
+
         socket.on('update-location-captain', async (data) => {
             const { userId, location } = data;
             console.log(`Update location event received: userId=${userId}, location=${JSON.stringify(location)}`);
@@ -55,6 +55,7 @@ function initializeSocket(server) {
 
 
 const sendMessageToSocketId = (socketId, messageObject) => {
+
     console.log('Preparing to send message:', { event: messageObject?.event, socketId });
 
     if (!io) {

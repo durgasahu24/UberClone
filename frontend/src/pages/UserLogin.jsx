@@ -35,10 +35,6 @@ const UserLogin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault(); // to prevent default behaviour of form which reloads the whole page
 
-    // const userData = {
-    //   email: email,
-    //   password: password
-    // };
 
     const validation = validate();
     setError(validation);

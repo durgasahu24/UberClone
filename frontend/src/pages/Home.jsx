@@ -12,7 +12,7 @@ import { UserDataContext } from '../context/UserContext.jsx';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { LiveTracking } from '../components/LiveTracking.jsx'
-import {toast} from 'react-hot-toast'
+import { toast } from 'react-hot-toast'
 
 function Home() {
   //video start from 4:26
@@ -230,12 +230,11 @@ function Home() {
       }
     })
 
-    console.log("response : ",response);
+    console.log("response : ", response);
     console.log("response data ", response.data);
     console.log("response status ", response.status);
-    if(response.status === 404)
-    {
-    toast.error(response.data.message)
+    if (response.status === 404) {
+      toast.error(response.data.message)
     }
   }
 
@@ -287,6 +286,7 @@ function Home() {
             Find Trip
           </button>
         </div>
+
         <div ref={panelRef} className='bg-white h-0'>
 
           <LocationSearchPanel

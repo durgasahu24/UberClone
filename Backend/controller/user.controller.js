@@ -6,6 +6,8 @@ const blackListTokenModel = require("../models/blackListToken.model.js");
 
 module.exports.registerUser = async (req, res, next) => {
 
+    console.log("hello register")
+
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });

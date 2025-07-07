@@ -29,6 +29,7 @@ module.exports.getAddressCoordinate = async (address) => {
 
 // Function to calculate the distance and time between two addresses using OpenRouteService API
 module.exports.getDistanceTime = async (originAddress, destinationAddress) => {
+    
     if (!originAddress || !destinationAddress) {
         throw new Error('Both origin and destination addresses are required');
     }

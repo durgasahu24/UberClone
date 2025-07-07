@@ -8,7 +8,6 @@ function UserProtectedWrapper({ children }) {
     console.log("welcome to protected wroute user protected routed ")
 
 
-
     const token = localStorage.getItem('jwt');
     const navigate = useNavigate();
     const { user, setUser } = useContext(UserDataContext)
