@@ -3,6 +3,7 @@
 import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { CaptainDataContext } from '../context/CaptainContext';
+import toast from 'react-hot-toast';
 import axios from 'axios';
 
 function CaptainLogin() {
@@ -19,17 +20,25 @@ function CaptainLogin() {
       password
     };
 
-    const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/captain/login`, captain);
 
-    if (response.status === 200) {
-      const data = response.data;
-      setCaptain(data.captain);
-      localStorage.setItem('token', data.token);
-      navigate('/captain-home');
+    try {
+      const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/captain/login`, captain);
+      console.log("login response ", response);
+      if (response.status === 200) {
+        const data = response.data;
+        setCaptain(data.captain);
+        localStorage.setItem('token', data.token);
+        toast.success("Captain login successfully ");
+        navigate('/captain-home');
+      }
+
+      setEmail("");
+      setPassword("");
+    } catch (error) {
+      toast.error(error.response.data.message)
+
+      console.log("errro captain login ; ", error)
     }
-
-    setEmail("");
-    setPassword("");
   };
 
   return (
