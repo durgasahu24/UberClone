@@ -3,7 +3,6 @@ const captainModel = require('../models/captain.model.js');
 
 
 
-// Function to get the coordinates (latitude and longitude) from an address using OpenStreetMap's Nominatim API
 module.exports.getAddressCoordinate = async (address) => {
     
     const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(address)}&format=json&addressdetails=1&limit=1`;
@@ -87,7 +86,6 @@ module.exports.getAutoCompleteSuggestions = async (input) => {
     try {
         const response = await axios.get(url);
         if (response.data && response.data.length > 0) {
-            // Return the suggestions in English
             return response.data.map(prediction => prediction.display_name);
         } else {
             throw new Error('Unable to fetch suggestions');

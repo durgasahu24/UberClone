@@ -60,11 +60,14 @@ module.exports.getSuggestions = async (req, res, next) => {
 
         const { input } = req.query;
 
+        console.log("input : ", input);
+
+
         const suggestions = await mapService.getAutoCompleteSuggestions(input);
 
         res.status(200).json(suggestions);
     } catch (err) {
-        console.error(err);
+        console.error("erro in suggestion controller ",err);
         res.status(500).json({ message: 'Internal server error' });
     }
 
