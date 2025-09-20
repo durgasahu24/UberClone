@@ -74,7 +74,6 @@ function Home() {
   })
 
 
-
   const handlePickupChange = async (e) => {
     console.log("e target value", e.target.value);
     setPickup(e.target.value)
@@ -220,24 +219,28 @@ function Home() {
 
 
   async function createRide() {
-    const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/rides/create`, {
-      pickup,
-      destination,
-      vehicleType
-    }, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`
-      }
-    })
 
-    console.log("response : ", response);
-    console.log("response data ", response.data);
-    console.log("response status ", response.status);
-    if (response.status === 404) {
-      toast.error(response.data.message)
+
+    try {
+
+      const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/rides/create`, {
+        pickup,
+        destination,
+        vehicleType
+      }, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('jwt')}`
+        }
+      })
+
+
+    } catch (error) {
+      toast.error(error?.response?.data?.message)
+      console.log("erorr ", error);
     }
-  }
 
+
+  }
 
 
   return (

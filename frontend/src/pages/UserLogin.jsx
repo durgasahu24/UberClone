@@ -6,12 +6,13 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 
 const UserLogin = () => {
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
+
   const [formData, setFormdata] = useState({
     email: "",
     password: ""
   })
+
+
   const [error, setError] = useState({});
 
   const handleChange = (e) => {

@@ -52,8 +52,6 @@ function CaptainHome() {
 
 
 
-
-
   console.log('Token before:', localStorage.getItem('token'));
 
   socket.on('new-ride', (data) => {

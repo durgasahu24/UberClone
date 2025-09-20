@@ -19,7 +19,6 @@ import { Toaster } from 'react-hot-toast'
 
 
 function App() {
-  // const ans = useContext(UserDataContext)
 
   return (
     <div>

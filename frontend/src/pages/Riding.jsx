@@ -10,13 +10,13 @@ const Riding = () => {
     const location = useLocation()
     const { ride } = location.state || {} // Retrieve ride data
     const { socket } = useContext(SocketContext)
-    
+
     socket.on("ride-ended", () => {
         navigate('/home')
     })
 
 
-    console.log("ride in Riding  :",ride);
+    console.log("ride in Riding  :", ride);
 
     return (
         <div className='h-screen'>
