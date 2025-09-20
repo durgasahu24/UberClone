@@ -11,11 +11,7 @@ const mapRoutes = require("./routes/map.routes.js")
 const rideRoutes = require("./routes/ride.routes.js")
 
 
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://uberclone-3jc7.onrender.com/"
-
-];
+const allowedOrigins = "http://localhost:5173"
 
 connectToDb();
 app.use(cookieParser());
