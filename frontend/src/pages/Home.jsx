@@ -220,7 +220,6 @@ function Home() {
 
   async function createRide() {
 
-
     try {
 
       const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/rides/create`, {
@@ -233,12 +232,10 @@ function Home() {
         }
       })
 
-
     } catch (error) {
       toast.error(error?.response?.data?.message)
       console.log("erorr ", error);
     }
-
 
   }
 
