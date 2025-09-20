@@ -75,26 +75,57 @@ module.exports.getDistanceTime = async (originAddress, destinationAddress) => {
 
 
 
+// module.exports.getAutoCompleteSuggestions = async (input) => {
+//     if (!input) {
+//         throw new Error('query is required');
+//     }
+
+//     // Add the `accept-language=en` to get results in English
+//     const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(input)}&format=json&addressdetails=1&limit=5&accept-language=en`;
+
+//     try {
+//         const response = await axios.get(url);
+//         if (response.data && response.data.length > 0) {
+//             return response.data.map(prediction => prediction.display_name);
+//         } else {
+//             throw new Error('Unable to fetch suggestions');
+//         }
+//     } catch (err) {
+//         console.error(err);
+//         throw err;
+//     }
+// };
+
+
+
 module.exports.getAutoCompleteSuggestions = async (input) => {
-    if (!input) {
-        throw new Error('query is required');
-    }
+  if (!input) {
+    throw new Error("query is required");
+  }
 
-    // Add the `accept-language=en` to get results in English
-    const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(input)}&format=json&addressdetails=1&limit=5&accept-language=en`;
+  // Nominatim API URL
+  const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(
+    input
+  )}&format=json&addressdetails=1&limit=5&accept-language=en`;
 
-    try {
-        const response = await axios.get(url);
-        if (response.data && response.data.length > 0) {
-            return response.data.map(prediction => prediction.display_name);
-        } else {
-            throw new Error('Unable to fetch suggestions');
-        }
-    } catch (err) {
-        console.error(err);
-        throw err;
+  try {
+    const response = await axios.get(url, {
+      headers: {
+        "User-Agent": "UberClone/1.0 (nominatim@yourdomain.com)" // required by Nominatim
+      },
+    });
+
+    if (response.data && response.data.length > 0) {
+      return response.data.map((prediction) => prediction.display_name);
+    } else {
+      return []; // return empty array if no results
     }
+  } catch (err) {
+    console.error("Error fetching suggestions:", err.message);
+    throw new Error("Failed to fetch location suggestions");
+  }
 };
+
 
 
 
