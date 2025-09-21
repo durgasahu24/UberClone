@@ -11,7 +11,7 @@ const mapRoutes = require("./routes/map.routes.js")
 const rideRoutes = require("./routes/ride.routes.js")
 
 
-const allowedOrigins = "http://localhost:5173"
+const allowedOrigins = ["http://localhost:5173","https://uber-clone-beryl-theta.vercel.app"]
 
 connectToDb();
 app.use(cookieParser());
