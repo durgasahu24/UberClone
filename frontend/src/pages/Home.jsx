@@ -15,7 +15,6 @@ import { LiveTracking } from '../components/LiveTracking.jsx'
 import { toast } from 'react-hot-toast'
 
 function Home() {
-  //video start from 4:26
   const [pickup, setPickup] = useState("");
   const [destination, setDestination] = useState("");
   const [panelOpen, setPanelOpen] = useState(false);
@@ -241,21 +240,20 @@ function Home() {
 
 
   return (
-    <div className='h-screen relative overflow-hidden'>
+    <div className='h-1/2 lg:h-screen relative overflow-hidden'>
       <img className='w-16 absolute left-5 top-5' src="https://download.logo.wine/logo/Uber/Uber-Logo.wine.png" alt="" />
       <div className='h-screen w-screen'>
         <LiveTracking />
       </div>
 
       <div className="absolute h-screen w-full top-0 flex flex-col justify-end">
-        <div className='h-[30%] bg-white p-5 relative'>
+        <div className='h-[38%] lg:h-[30%] xl:h-[45%] bg-white p-5 relative'>
           <h5
             ref={panelCloseRef}
             onClick={() => setPanelOpen(false)}
             className='absolute right-6 top-6 opacity-0' > <i className="ri-arrow-down-wide-line"></i></h5>
-          <h1 className='text-3xl font-semibold'>Find a trip</h1>
+          <h1 className='text-3xl font-semibold  md:mt-3 lg:mt-0 xl:mt-7'>Find a trip</h1>
           <form onSubmit={submitHandler}>
-            <div className='line w-1 absolute h-16 top-[48%] bg-gray-900 left-10'></div>
             <input
               value={pickup}
               onChange={handlePickupChange}
@@ -263,7 +261,7 @@ function Home() {
                 setPanelOpen(true)
                 setActiveField('pickup')
               }}
-              className="bg-[#eee] rounded-lg w-full mt-5 px-12 py-2"
+              className="bg-[#eee] rounded-lg w-full mt-5 px-12 py-1 lg:py-2 xl:py-2"
               type="text"
               placeholder='Add a pick-up location'
             />
@@ -275,14 +273,14 @@ function Home() {
               value={destination}
               onChange={handleDestinationChange}
 
-              className="bg-[#eee] rounded-lg w-full mt-5 px-12 py-2"
+              className="bg-[#eee] rounded-lg w-full mt-5 px-12 py-1 lg:py-2 xl:py-2"
               type="text"
               placeholder='Enter your destination'
             />
           </form>
           <button
             onClick={findTrip}
-            className='bg-black text-white px-4 py-2 rounded-lg mt-11 w-full '>
+            className='bg-black text-white px-4 py-2 rounded-lg mt-5 w-full '>
             Find Trip
           </button>
         </div>
